@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  {% block title %}
+  <title>Home</title>
+  {% endblock title %}
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      color: #f7f9ff;
+      background: radial-gradient(circle at top left, #081227 0%, #050814 35%, #090f1f 100%);
+      overflow-x: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 20% 15%, rgba(0, 242, 254, 0.18), transparent 12%),
+                  radial-gradient(circle at 90% 20%, rgba(255, 255, 255, 0.08), transparent 10%),
+                  radial-gradient(circle at 60% 90%, rgba(0, 255, 178, 0.08), transparent 18%);
+      opacity: 0.95;
+      animation: drift 18s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0px) scale(1); }
+      to { transform: translateY(-25px) scale(1.01); }
+    }
+
+    .navbar-futuristic {
+      background: rgba(8, 12, 28, 0.88) !important;
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(0, 242, 254, 0.16);
+      box-shadow: 0 18px 45px rgba(0, 242, 254, 0.12);
+      transition: transform 0.3s ease, background 0.3s ease;
+      z-index: 10;
+    }
+
+    .navbar-futuristic::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.08), transparent 40%, rgba(255, 255, 255, 0.06), transparent 75%);
+      mix-blend-mode: screen;
+      opacity: 0.6;
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      color: #fff !important;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 1.05rem;
+      text-shadow: 0 0 16px rgba(0, 242, 254, 0.22);
+    }
+
+    .navbar-toggler {
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .navbar-toggler-icon {
+      filter: invert(1);
+    }
+
+    .nav-link {
+      color: #dce4ff !important;
+      position: relative;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      transition: color 0.25s ease;
+      margin: 0 10px;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: #00f2fe;
+      transition: width 0.25s ease-in-out;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: #00f2fe !important;
+      text-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .btn-neon {
+      border: 1px solid #00f2fe;
+      color: #00f2fe;
+      background: transparent;
+      border-radius: 50px;
+      padding: 10px 26px;
+      transition: 0.35s ease;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+    }
+
+    .btn-neon:hover {
+      background: #00f2fe;
+      color: #081227;
+      box-shadow: 0 0 22px rgba(0, 242, 254, 0.35);
+    }
+
+    .form-control {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #ecf4ff;
+      transition: all 0.3s ease;
+      box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .form-control:focus {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: #00f2fe;
+      box-shadow: 0 0 0 0.3rem rgba(0, 242, 254, 0.12);
+      color: #fff;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeInUp 0.9s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      filter: blur(36px);
+      background: rgba(0, 242, 254, 0.18);
+      mix-blend-mode: screen;
+      z-index: 0;
+      animation: pulseGlow 6s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      from { transform: scale(1) translateY(0px); opacity: 0.7; }
+      50% { transform: scale(1.08) translateY(-12px); opacity: 0.85; }
+      to { transform: scale(1) translateY(0px); opacity: 0.7; }
+    }
+
+    footer {
+      background: rgba(5, 10, 22, 0.9);
+      border-top: 1px solid rgba(0, 242, 254, 0.12);
+    }
+
+    footer p,
+    footer a {
+      color: rgba(255, 255, 255, 0.65);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-futuristic sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <span style="color: #00f2fe;">YOUR</span>MART
+      </a>
+
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#cyberNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="cyberNav">
+        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'market' %}">Market</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+        </ul>
+        <form class="d-flex" action="{% url 'search' %}" method="get">
+          <input class="form-control bg-dark border-secondary text-white me-2 rounded-pill" type="search"
+            name="search" placeholder="Search the Product..." style="font-size: 0.9rem;" value="{{ search_query }}">
+          <button class="btn btn-neon" type="submit">Scan</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  {% block content %}
+
+
+
+  <footer class="text-center text-white-50 py-4 small">
+    <div class="container">
+      Crafted for a modern shopping experience with polished visuals, smooth animations, and a clean layout.
+      <br>
+      YourMart makes browsing, searching, and ordering feel faster and more inviting.
+    </div>
+  </footer>
+
+  <!-- Optional JavaScript; choose one of the two! -->
+
+  
+  
+  
+  {% endblock content %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

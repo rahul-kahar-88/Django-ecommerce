@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+
+{% block title %}
+<title>YOURMART | Payment Success</title>
+{% endblock title %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="hero-card text-center p-5 rounded-4 shadow-lg" style="max-width: 520px;">
+        <div class="mb-4">
+            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-info bg-opacity-15" style="width: 96px; height: 96px;">
+                    <span class="fs-1 text-success">✓</span>
+                </div>
+            </div>
+            <h2 class="mb-3 text-white">Payment Successful</h2>
+            <p class="text-white-50 mb-4">Thank you for your purchase! Your payment has been successfully processed.</p>
+
+            <div class="details-box bg-dark bg-opacity-50 border border-secondary border-opacity-25 rounded-4 p-4 text-start mb-4">
+                <p class="mb-2"><strong>Order ID :</strong> {{ order.order_id }}</p>
+                <p class="mb-2"><strong>Payment ID :</strong> {{ order.razorpay_id }}</p>
+                <p class="mb-0"><strong>Amount Paid :</strong> ₹{{ order.amount }}</p>
+            </div>
+
+            <a href="{% url 'userdashboard' %}" class="btn btn-neon px-5 py-2">Go to Home</a>
+        </div>
+    </div>
+{% endblock content %}

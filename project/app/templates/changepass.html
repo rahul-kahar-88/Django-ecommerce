@@ -1,0 +1,129 @@
+{% extends "index.html" %}
+
+{% block title %}
+<title>Portal | Reset Password</title>
+{% endblock title %}
+
+{% block content %}
+<style>
+  body {
+
+    background: radial-gradient(circle at 50% 50%, #0d1b2a 0%, #000814 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image:
+      linear-gradient(rgba(0, 242, 254, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 242, 254, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    z-index: -1;
+  }
+
+  .bg-glow {
+    position: fixed;
+    top: 20%;
+    left: 20%;
+    width: 400px;
+    height: 400px;
+    background: rgba(0, 242, 254, 0.1);
+    filter: blur(100px);
+    border-radius: 50%;
+    z-index: -1;
+    animation: pulse 8s infinite alternate;
+  }
+
+  .card {
+    animation: fadeInUp 0.9s ease both;
+  }
+
+  @keyframes pulse {
+    from { transform: scale(1); opacity: 0.5; }
+    to { transform: scale(1.5); opacity: 0.8; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="row w-100 justify-content-center">
+    <div class="col-md-5 col-lg-4">
+
+      <div class="card bg-dark bg-opacity-75 text-white border border-secondary border-opacity-50 shadow-lg rounded-4 p-3">
+        <div class="card-body">
+
+
+          <h3 class="text-center mb-4 fw-bold tracking-widest text-uppercase">
+            <span class="text-info border-bottom border-2 border-info pb-1">Reset Password</span>
+          </h3>
+
+          {% if msg %}
+            <div class="alert alert-danger bg-transparent text-danger border-danger small py-2">
+              {{ msg }}
+            </div>
+          {% endif %}
+
+          {% if msg1 %}
+            <div class="alert alert-warning bg-transparent text-warning border-warning small py-2">
+              {{ msg1 }}
+            </div>
+          {% endif %}
+
+
+
+          <form method="POST" action="{% url 'reset' %}">
+            {% csrf_token %}
+
+            <div class="mb-4">
+              <label class="form-label small text-info fw-bold">OTP CODE</label>
+              <input type="text"
+                     class="form-control bg-transparent border-0 border-bottom border-secondary rounded-0 text-white px-0 focus-none"
+                     placeholder="Enter 6-digit OTP"
+                     name="otp" required maxlength="6">
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label small text-info fw-bold">NEW PASSWORD</label>
+              <input type="password"
+                     class="form-control bg-transparent border-0 border-bottom border-secondary rounded-0 text-white px-0 focus-none"
+                     placeholder="••••••••"
+                     name="password" required>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label small text-info fw-bold">CONFIRM PASSWORD</label>
+              <input type="password"
+                     class="form-control bg-transparent border-0 border-bottom border-secondary rounded-0 text-white px-0 focus-none"
+                     placeholder="••••••••"
+                     name="cpassword" required>
+            </div>
+
+
+            <button type="submit" class="btn btn-outline-info rounded-pill w-100 fw-bold mt-2 py-2 text-uppercase tracking-wider">
+              Reset Password
+            </button>
+
+            <div class="text-center mt-4">
+              <p class="small text-muted">Remember your password? <a href="{% url 'login' %}" class="text-info text-decoration-none">Back to Login</a></p>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock content %}

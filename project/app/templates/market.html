@@ -1,0 +1,95 @@
+{% extends "index.html" %}
+
+{% block title %}
+<title>YOURMART | Market</title>
+{% endblock title %}
+
+{% block content %}
+
+
+
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: radial-gradient(circle at 50% 50%, #0d1b2a 0%, #000814 100%);
+        background-attachment: fixed;
+        color: #ffffff;
+    }
+    .coming-card {
+        background: rgba(0, 0, 0, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 40px;
+        text-align: center;
+        max-width: 500px;
+        margin: 100px auto;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .glow-text {
+        font-size: 2rem;
+        color: #00f2fe;
+        margin-bottom: 20px;
+    }
+
+    .sub-text {
+        color: #ccc;
+        margin-bottom: 30px;
+    }
+
+    .btn-custom {
+        background: #00f2fe;
+        color: #000;
+        border: none;
+        border-radius: 999px;
+        transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .btn-custom {
+        background: #00f2fe;
+        color: #000;
+        border: none;
+        border-radius: 999px;
+        padding: 0.95rem 2rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-custom:hover {
+        box-shadow: 0 0 5px #00f2fe, 0 0 10px #00f2fe, 0 0 15px #00f2fe;
+        transform: translateY(-2px);
+    }
+
+    .coming-card {
+        animation: fadeInUp 0.95s ease both;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+
+<div class="coming-card">
+
+    <div class="glow-text">🚀 MARKET OPENING SOON</div>
+
+    <p class="sub-text">
+        We are excited to announce that our market will be opening soon!  
+        Stay tuned for amazing products and deals.
+    </p>
+
+    <a href="{% url 'home' %}" class="btn btn-custom px-4 py-2">Notify Me</a>
+
+</div>
+
+{% endblock content %}
