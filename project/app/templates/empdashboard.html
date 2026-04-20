@@ -181,9 +181,39 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @media (max-width: 991px) {
+            .sidebar {
+                width: 100%;
+            }
+            .main-layout {
+                flex-direction: column;
+            }
+            .content {
+                padding: 1rem;
+            }
+            .header-bar {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .brand-title {
+                font-size: 1.2rem;
+            }
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            .card .btn {
+                width: 100%;
+            }
+        }
     </style>
 </head>
-
+    
 <body>
     <div class="header-bar">
         <div>

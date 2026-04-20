@@ -66,6 +66,26 @@
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
+  @media (max-width: 576px) {
+    .card {
+      padding: 1rem;
+    }
+    .card h3 {
+      font-size: 1.5rem;
+    }
+    .page-hero {
+      min-height: auto;
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
+    .card {
+      max-height: none;
+      overflow-y: visible;
+    }
+    body {
+      background-attachment: scroll;
+    }
+  }
 </style>
 <div class="container page-hero d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 80px);">
     <div class="row w-100 justify-content-center">
