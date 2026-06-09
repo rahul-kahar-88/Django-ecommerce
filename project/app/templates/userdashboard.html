@@ -140,10 +140,10 @@
 
     .product-card {
       position: relative;
-      border-radius: 32px;
+      border-radius: 28px;
       background: rgba(8, 15, 34, 0.94);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 28px 78px rgba(2, 11, 32, 0.34);
+      box-shadow: 0 22px 50px rgba(2, 11, 32, 0.34);
       backdrop-filter: blur(16px);
       transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
       overflow: hidden;
@@ -180,7 +180,9 @@
       background: rgba(255, 255, 255, 0.08);
       border: 1px solid rgba(255, 255, 255, 0.12);
       letter-spacing: 0.12em;
-      font-weight: 700;
+      font-weight: 400;
+      font-size: 0.4rem;
+      padding: 0.10em 0.4em;
     }
 
     .badge-category {
@@ -188,15 +190,17 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       color: #e2e8f0;
       text-transform: uppercase;
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      padding: 0.45em 0.85em;
+      font-weight: 400;
+      font-size: 0.4rem;
+      letter-spacing: 0.05em;
+      padding: 0.10em 0.4em;
     }
 
     .product-card .btn-premium {
       background: linear-gradient(135deg, rgba(14, 165, 233, 0.95), rgba(244, 114, 182, 0.95));
       border: none;
       color: white;
+      font-size: 0.75rem;
       box-shadow: 0 12px 22px rgba(244, 114, 182, 0.18);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
@@ -208,10 +212,21 @@
 
     .product-image {
       width: 100%;
-      height: 250px;
-      object-fit: cover;
+      height: 170px;
+      object-fit: contain;
+      background: rgba(255, 255, 255, 0.04);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       transition: transform 0.35s ease;
+    }
+
+    .product-card h5 {
+      font-size: 0.8rem;
+      margin-bottom: 0.2rem;
+      line-height: 1.2;
+    }
+
+    .product-card .p-3 {
+      padding: 0.75rem 0.75rem 0.65rem;
     }
 
     .product-card:hover .product-image {
@@ -220,6 +235,8 @@
 
     .product-card .btn {
       border-radius: 999px;
+      font-size: 0.72rem;
+      padding: 0.45rem 0.8rem;
     }
 
     .product-card .badge {
@@ -396,7 +413,7 @@
         font-size: 2rem;
       }
       .product-image {
-        height: 200px;
+        height: 160px;
       }
       .navbar-nav {
         text-align: center;
@@ -425,8 +442,14 @@
       .hero-card h1 {
         font-size: 1.8rem;
       }
+      .product-image {
+        height: 140px;
+      }
+      .product-card {
+        border-radius: 22px;
+      }
       .product-card .btn {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
       }
       .navbar-brand {
         font-size: 1rem;
@@ -505,14 +528,14 @@
     <div class="container hero-card p-5">
       <div class="row align-items-center gy-4">
         <div class="col-lg-7">
-          <span class="badge bg-info bg-opacity-15 text-dark mb-3">Welcome back, shopper</span>
+          <span class="badge bg-info bg-opacity-15 text-dark mb-3">Welcome back, {{ user.Name | default:"Guest" }}!</span>
           <h1 class="display-5 fw-bold text-white">Shop with confidence and style</h1>
           <p class="lead text-secondary mb-4">
             Browse top products across categories, enjoy fast checkout, and keep your orders secure.
           </p>
           <div class="d-flex flex-wrap gap-2">
             <a href="#products" class="btn btn-info btn-lg rounded-pill">Explore products</a>
-            <a href="#" class="btn btn-outline-light btn-lg rounded-pill">View orders</a>
+            <a href="{% url 'cart_page' %}" class="btn btn-outline-light btn-lg rounded-pill">View orders</a>
           </div>
         </div>
         <div class="col-lg-5">
@@ -537,20 +560,19 @@
     </div>
   </div>
   <div class="container py-5" id="products">
-    <div class="row g-4 row-cols-1 row-cols-sm-2 row-cols-md-4">
+    <div class="row g-4 row-cols-2 row-cols-sm-2 row-cols-md-4">
       {% for item in items %}
       <div class="col">
-        <div class="product-card rounded-4 overflow-hidden bg-dark bg-opacity-20 h-100 d-flex flex-column">
+        <div class="product-card rounded-4 overflow-hidden bg-dark bg-opacity-20 h-100 d-flex flex-column fade-in">
           <img src="{% if item.item_image %}{{ item.item_image.url }}{% else %}/static/images/product.png{% endif %}"
             alt="{{ item.item_name }}" class="product-image">
           <div class="p-3 d-flex flex-column justify-content-between flex-grow-1">
             <div>
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <span class="badge premium-label text-white text-uppercase small px-3 py-2">Limited</span>
+                <span class="badge premium-label text-white text-uppercase small px-1 py-1">Limited</span>
                 <span class="text-white-50 small">{{ item.item_color }}</span>
               </div>
               <h5 class="text-white mb-2 fw-semibold">{{ item.item_name }}</h5>
-              <p class="text-white small mb-3">{{ item.item_desc }}</p>
             </div>
             <div>
               <div class="d-flex justify-content-between align-items-center mb-3">

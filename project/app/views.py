@@ -450,13 +450,14 @@ def reset(req):
 @never_cache
 def userdashboard(req):
     cart_count = 0
+    user = None
     if 'user_id' in req.session:
         user = User.objects.get(id=req.session['user_id'])
         cart_items = Cart.objects.filter(user=user)
         cart_count = sum(item.quantity for item in cart_items)
     
     items = Item.objects.all()
-    return render(req,'userdashboard.html' ,{'items': items, 'cart_count': cart_count})
+    return render(req,'userdashboard.html' ,{'items': items, 'cart_count': cart_count , 'user': user})
 
 
 
