@@ -37,6 +37,7 @@ def Registration(req):
                     CPass=cp,
                     Image=ph
                 )
+                messages.success(req, 'Registration successful. Please login.')
                 return redirect('login')
             else:
                 msg = "Password and confirm not matched"
