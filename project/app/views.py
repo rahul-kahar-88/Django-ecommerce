@@ -368,6 +368,15 @@ def show_item(req):
         return redirect('login')
     
 @never_cache
+def show_users(req):
+    if 'a_data' in req.session:
+        a_data = req.session.get('a_data')
+        all_users = User.objects.all()
+        return render(req, 'admindashboard.html', {'data': a_data, 'show_users': True, 'all_users': all_users})
+    else:
+        return redirect('login')
+    
+@never_cache
 def profile(req):
    if 'emp_id' in req.session:
       eid = req.session.get('emp_id')

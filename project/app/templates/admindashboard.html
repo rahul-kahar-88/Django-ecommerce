@@ -250,6 +250,7 @@
             <a href="{% url 'show_dep' %}">Show Department</a>
             <a href="{% url 'add_emp' %}">Add Employee</a>
             <a href="{% url 'show_emp' %}">Show Employee</a>
+            <a href="{% url 'show_users' %}">Show Users</a>
             <a href="{% url 'emp_all_query' %}">Employee Query</a>
             <a href="{% url 'add_item' %}">Add Item</a>
             <a href="{% url 'show_item' %}">Show Item</a>
@@ -475,6 +476,43 @@
                                             <td><span class="badge bg-secondary bg-opacity-20">Image</span></td>
                                             <td><a href="{% url 'edit_emp' i.id %}" class="btn btn-sm btn-outline-info">Edit</a></td>
                                             <td><a href="{% url 'delete_emp' i.id %}" class="btn btn-sm btn-outline-danger">Delete</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            {% elif show_users %}
+                <div class="card section-card shadow-sm mb-4">
+                    <div class="card-header bg-primary bg-opacity-15 text-primary fst-italic">Registered Users</div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless align-middle text-white">
+                                <thead class="table-light text-dark">
+                                    <tr>
+                                        <th>S.No</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Contact</th>
+                                        <th>Image</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for user in all_users %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ user.Name }}</td>
+                                            <td>{{ user.Email }}</td>
+                                            <td>{{ user.Contact }}</td>
+                                            <td>
+                                                {% if user.Image %}
+                                                    <img src="{{ user.Image.url }}" alt="{{ user.Name }}" style="width:48px; height:48px; object-fit:cover; border-radius:8px;">
+                                                {% else %}
+                                                    <span class="badge bg-secondary bg-opacity-20">No image</span>
+                                                {% endif %}
+                                            </td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
